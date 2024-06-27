@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urine Strip Analysis Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-4 text-center">Analysis Result</h1>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2">Test</th>
+                        <th class="py-2">RGB Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for test, color in result.items %}
+                    <tr>
+                        <td class="border px-4 py-2">{{ test }}</td>
+                        <td class="border px-4 py-2">
+                            <span style="background-color: rgb({{ color.0 }}, {{ color.1 }}, {{ color.2 }});" class="inline-block w-6 h-6 rounded-full border border-gray-300"></span>
+                            ({{ color.0 }}, {{ color.1 }}, {{ color.2 }})
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="mt-4 text-center">
+                <a href="{% url 'upload_image' %}" class="text-indigo-600 hover:underline">Upload another image</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
